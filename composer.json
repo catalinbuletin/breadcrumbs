@@ -1,5 +1,5 @@
 {
-    "name": "watson/breadcrumbs",
+    "name": "catalinbuletin/breadcrumbs",
     "description": "Breadcrumbs made easy for Laravel.",
     "keywords": ["laravel", "breadcrumbs"],
     "license": "MIT",
@@ -10,10 +10,10 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "illuminate/routing": "5.*",
-        "illuminate/support": "5.*",
-        "illuminate/view": "5.*"
+        "php": ">=7.2",
+        "illuminate/routing": "^6.0",
+        "illuminate/support": "^6.0",
+        "illuminate/view": "^6.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
