@@ -9,9 +9,9 @@ class Route
     /**
      * The base router instance.
      *
-     * @var \Illuminate\Routing\Route
+     * @var \Illuminate\Contracts\Routing\Registrar
      */
-    protected $route;
+    protected $registrar;
 
     /**
     * Construct the route instance.
@@ -21,7 +21,7 @@ class Route
     */
     public function __construct(Registrar $registrar)
     {
-        $this->route = $registrar->current();
+        $this->registrar = $registrar;
     }
 
     /**
@@ -31,7 +31,7 @@ class Route
      */
     public function present(): bool
     {
-        return ! is_null($this->route);
+        return ! is_null($this->registrar->current());
     }
 
     /**
@@ -41,17 +41,17 @@ class Route
      */
     public function name()
     {
-        if ($name = $this->route->getName()) {
+        if ($name = $this->registrar->current()->getName()) {
             return $name;
         }
 
-        $name = $this->route->getActionName();
+        $name = $this->registrar->current()->getActionName();
 
         if ($name === 'Closure') {
             return null;
         }
 
-        $namespace = array_get($this->route->getAction(), 'namespace');
+        $namespace = array_get($this->registrar->current()->getAction(), 'namespace');
 
         return str_replace($namespace . '\\', '', $name);
     }
@@ -63,6 +63,6 @@ class Route
      */
     public function parameters(): array
     {
-        return $this->route->parameters();
+        return $this->registrar->current()->parameters();
     }
 }

@@ -3,6 +3,7 @@
 namespace Watson\Breadcrumbs;
 
 use Closure;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class Generator
@@ -108,7 +109,7 @@ class Generator
     {
         $definition = $this->registrar->get($name);
 
-        $parameters = array_prepend(array_values($parameters), $this);
+        $parameters = Arr::prepend(array_values($parameters), $this);
 
         call_user_func_array($definition, $parameters);
     }
